@@ -1,4 +1,4 @@
-# Project Name
+# Project Name is Attrition Predictor
 
 example image:
 
