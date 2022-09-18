@@ -1,3 +1,5 @@
+import os
+
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -8,6 +10,15 @@ from PIL import Image
 from copy import deepcopy
 
 # ________________________________________________________________________________________
+path = os.path.dirname(__file__)
+output_map = path + '/outmap.csv'
+output_logo = path + "/sit_logo.png"
+output_graph = path + "/fancy_graph.csv"
+output_df = path + "/WA_Fn-UseC_-HR-Employee-Attrition.csv"
+# ________________________________________________________________________________________
+
+
+# ________________________________________________________________________________________
 st.set_page_config(page_title="IBM Employee Attrition", page_icon=":muscle:",
         layout="wide")
 # _________________________________________________________________________________________
@@ -16,15 +27,15 @@ def load_data(path):
     df = pd.read_csv(path)
     return df
 
-df_map_raw = load_data(path="outmap.csv")
+df_map_raw = load_data(path=output_map)
 df_map = deepcopy(df_map_raw)
 
-df_ibm_raw = load_data(path="WA_Fn-UseC_-HR-Employee-Attrition.csv")
+df_ibm_raw = load_data(path=output_df)
 df_ibm = deepcopy(df_ibm_raw)
 
 # ___________Display sidebar________________________________________________
 st.sidebar.metric("Date", value = "16.09.2022")
-image = Image.open("sit_logo.png")
+image = Image.open(output_logo)
 st.sidebar.image(image)
 st.sidebar.title("**SiT Academy** Group Challenge")
 
@@ -62,7 +73,7 @@ ibm_url = "https://www.ibm.com/planetwide/"
 st.title("")
 st.header("Office distribution")
 st.write("Source: ", ibm_url)
-df_map = pd.read_csv("outmap.csv")
+df_map = pd.read_csv(output_map)
 st.map(data = df_map, zoom = 1)
 
 
@@ -98,12 +109,12 @@ st.plotly_chart(fig_test, use_container_width=True)
 
 st.title("")
 
-confution = pd.read_csv("fancy_graph.csv")
+confusion = pd.read_csv(output_graph)
 
 fig2 = go.Figure()
-for col in confution.columns:
+for col in confusion.columns:
     fig2.add_trace(
-        go.Scatter(x=confution.index, y=confution[col], mode="lines+markers", name=col)
+        go.Scatter(x=confusion.index, y=confusion[col], mode="lines+markers", name=col)
     )
 fig2.update_layout(hovermode="x unified")
 
