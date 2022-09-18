@@ -16,15 +16,15 @@ def load_data(path):
     df = pd.read_csv(path)
     return df
 
-df_map_raw = load_data(path=r"C:\Users\Study\Desktop\outmap.csv")
+df_map_raw = load_data(path="outmap.csv")
 df_map = deepcopy(df_map_raw)
 
-df_ibm_raw = load_data(path=r"C:\Users\Study\Desktop\WA_Fn-UseC_-HR-Employee-Attrition.csv")
+df_ibm_raw = load_data(path="WA_Fn-UseC_-HR-Employee-Attrition.csv")
 df_ibm = deepcopy(df_ibm_raw)
 
 # ___________Display sidebar________________________________________________
 st.sidebar.metric("Date", value = "16.09.2022")
-image = Image.open(r"C:\Users\Study\Desktop\sit_logo.png")
+image = Image.open("sit_logo.png")
 st.sidebar.image(image)
 st.sidebar.title("**SiT Academy** Group Challenge")
 
@@ -62,7 +62,7 @@ ibm_url = "https://www.ibm.com/planetwide/"
 st.title("")
 st.header("Office distribution")
 st.write("Source: ", ibm_url)
-df_map = pd.read_csv(r"C:\Users\Study\Desktop\outmap.csv")
+df_map = pd.read_csv("outmap.csv")
 st.map(data = df_map, zoom = 1)
 
 
@@ -98,7 +98,7 @@ st.plotly_chart(fig_test, use_container_width=True)
 
 st.title("")
 
-confution = pd.read_csv(r"C:\Users\Study\Desktop\fancy_graph.csv")
+confution = pd.read_csv("fancy_graph.csv")
 
 fig2 = go.Figure()
 for col in confution.columns:
